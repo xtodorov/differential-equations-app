@@ -2265,3 +2265,430 @@ pre {
     margin-bottom: 8px;
   }
 }
+
+/* Study notebook: quiet surfaces, readable Bulgarian type, one action accent. */
+:root {
+  --accent: #8bcbb9;
+  --accent-solid: #286c59;
+  --green: #8bcbb9;
+  --bg: #171d1c;
+  --sidebar: #131917;
+  --surface: #202826;
+  --surface-2: #293430;
+  --border: #3c4944;
+  --muted: #b4c2bc;
+  --text: #eff3ee;
+  --shadow: none;
+}
+:root[data-theme="light"] {
+  --bg: #f7f5ef;
+  --sidebar: #eeeee5;
+  --surface: #fffef9;
+  --surface-2: #e9eee6;
+  --border: #d3d9cf;
+  --text: #24342c;
+  --muted: #58685e;
+  --accent: #286c59;
+  --accent-solid: #286c59;
+  --green: #286c59;
+  --shadow: none;
+}
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  font-size: 16px;
+}
+h1,
+h2 {
+  letter-spacing: -0.5px;
+}
+h1 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 500;
+}
+.brand-icon,
+.button.primary {
+  background: var(--accent-solid);
+  box-shadow: none;
+}
+.button.primary:hover {
+  background: #36816a;
+}
+.brand-ai,
+.sidebar-note,
+.math-art,
+.tip-panel,
+.top-status,
+.daily-ring,
+.auth-formula {
+  display: none;
+}
+.nav-item {
+  font-size: 14px;
+  padding: 12px;
+}
+.nav-item.active {
+  color: var(--accent);
+  background: var(--surface-2);
+  border-color: transparent;
+}
+.nav-item.active:before {
+  background: var(--accent);
+}
+.workspace-label,
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.7px;
+}
+.sidebar-bottom {
+  padding-top: 30px;
+}
+.sidebar .brand {
+  margin-bottom: 35px;
+}
+.page-title p,
+.muted,
+.lesson-card p {
+  font-size: 14px;
+}
+.section-row h2 {
+  font-size: 20px;
+}
+.section-row > a {
+  font-size: 13px;
+}
+.panel {
+  box-shadow: none;
+  border-radius: 6px;
+}
+.stats-grid {
+  gap: 0;
+  border-block: 1px solid var(--border);
+  margin-bottom: 36px;
+}
+.stat {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 20px;
+}
+.stat-icon {
+  display: none;
+}
+.stat strong {
+  font-size: 26px;
+}
+.stat p {
+  font-size: 14px;
+  color: var(--muted);
+}
+.stat small {
+  font-size: 12px;
+  color: var(--muted);
+}
+.dashboard-grid {
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 32px;
+}
+.continue-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 4px;
+  min-height: 0;
+  box-shadow: none;
+}
+.continue-copy {
+  width: 100%;
+  padding: 28px;
+}
+.continue-copy h2 {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  color: var(--text);
+  max-width: 650px;
+}
+.continue-copy p {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 650px;
+}
+.continue-copy .recommendation-reason {
+  font-size: 12px;
+  margin-top: 12px;
+}
+.continue-copy .button {
+  font-size: 14px;
+  margin-top: 10px;
+}
+.lesson-meta {
+  font-size: 13px;
+  color: var(--muted);
+}
+.tag {
+  color: var(--accent);
+  background: var(--surface-2);
+  border-color: var(--border);
+  font-size: 11px;
+}
+.status-dot {
+  background: var(--accent);
+}
+.track-switch {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 0;
+  gap: 15px;
+}
+.track-switch button {
+  font-size: 13px;
+  padding: 12px 6px;
+  border-radius: 0;
+}
+.track-switch button.selected {
+  color: var(--accent);
+  background: transparent;
+  border-bottom: 2px solid var(--accent);
+}
+.track-card {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  padding: 20px 0;
+}
+.track-card h3 {
+  font-size: 17px;
+}
+.track-card p {
+  font-size: 14px;
+}
+.track-card-top {
+  display: none;
+}
+.progress-caption {
+  font-size: 12px;
+}
+.progress-caption b {
+  color: var(--accent);
+}
+.track-card.wolfram .progress-bar > span {
+  background: var(--accent-solid);
+}
+.daily-panel,
+.course-panel {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  padding: 20px 0;
+}
+.daily-panel .panel-heading h3,
+.course-panel h3 {
+  font-size: 16px;
+}
+.daily-panel h4,
+.daily-panel > p {
+  font-size: 14px;
+  text-align: left;
+}
+.daily-check {
+  font-size: 13px;
+}
+.course-panel p {
+  font-size: 14px;
+}
+.course-panel a {
+  font-size: 13px;
+}
+.course-panel .eyebrow {
+  font-size: 10px;
+}
+.daily-panel .panel-heading > svg {
+  display: none;
+}
+.activity-row b,
+.empty-inline b {
+  font-size: 14px;
+}
+.activity-row p,
+.empty-inline p {
+  font-size: 13px;
+}
+.activity-panel {
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  padding: 0;
+}
+.inline-meta {
+  font-size: 12px;
+}
+.lesson-card .inline-meta {
+  font-size: 12px;
+}
+.lesson-card {
+  border: 0;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+}
+.lesson-card h3 {
+  font-size: 17px;
+}
+.lesson-number {
+  border: 0;
+  border-radius: 0;
+  color: var(--accent);
+}
+.theory {
+  padding: 36px;
+  max-width: 850px;
+}
+.theory > p {
+  font-size: 17px;
+  line-height: 1.95;
+}
+.theory h2 {
+  font-size: 24px;
+}
+.objectives li,
+.worked-steps p,
+.mistakes p {
+  font-size: 16px;
+  line-height: 1.9;
+}
+.formula {
+  background: var(--surface-2);
+  border: 0;
+  font-size: 21px;
+  padding: 24px;
+}
+.lesson-outline p {
+  font-size: 14px;
+}
+.outline-step {
+  font-size: 13px;
+}
+.lesson-tabs > button {
+  font-size: 14px;
+}
+.exercise h3 {
+  font-size: 20px;
+}
+.exercise > p,
+.practice-notice,
+.hint,
+.feedback {
+  font-size: 14px;
+}
+.exercise input {
+  font-size: 16px !important;
+}
+.button {
+  font-size: 14px;
+}
+.reveal-button {
+  font-size: 13px;
+}
+.auth-story {
+  background: #213e32;
+}
+.auth-story h1 {
+  color: #f4f2e9;
+}
+.auth-story em {
+  color: #bbd5a5;
+}
+.auth-story p,
+.auth-story li {
+  color: #d3ddd5;
+}
+.auth-card > p,
+.auth-card label {
+  font-size: 14px;
+}
+.auth-card h2 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+}
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+}
+@media (max-width: 1000px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .right-column {
+    display: block;
+  }
+  .daily-panel {
+    display: block;
+  }
+  .course-panel {
+    display: none;
+  }
+}
+@media (max-width: 760px) {
+  h1,
+  .page-title h1 {
+    font-size: 29px;
+  }
+  .main-content {
+    padding: 24px 18px;
+  }
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stat {
+    padding: 16px 8px;
+  }
+  .track-switch {
+    gap: 5px;
+  }
+  .track-switch button {
+    font-size: 11px;
+    white-space: normal;
+  }
+  .continue-copy {
+    width: 100%;
+    padding: 22px;
+  }
+  .continue-copy h2 {
+    font-size: 26px;
+  }
+  .track-cards {
+    grid-template-columns: 1fr;
+  }
+  .theory {
+    padding: 22px;
+  }
+  .theory > p {
+    font-size: 16px;
+  }
+  .formula {
+    font-size: 17px;
+  }
+  .lesson-tabs {
+    gap: 12px;
+  }
+  .lesson-tabs > button {
+    font-size: 12px;
+  }
+  .lesson-card h3 {
+    font-size: 16px;
+  }
+  .lesson-card p {
+    font-size: 14px;
+  }
+  .right-column .panel {
+    padding: 20px 0;
+  }
+  .stat p {
+    font-size: 13px;
+  }
+}

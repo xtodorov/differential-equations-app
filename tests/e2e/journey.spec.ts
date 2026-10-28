@@ -126,7 +126,7 @@ test("authenticated mobile navigation, theme and graph remain functional", async
     ),
   ).toBe(true);
   await page.getByRole("button", { name: "Смени темата" }).click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page.getByRole("button", { name: "Отвори менюто" }).click();
   await page.getByRole("link", { name: "Визуална лаборатория" }).click();
   await expect(page.locator(".plot .main-svg").first()).toBeVisible();

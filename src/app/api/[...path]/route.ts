@@ -133,8 +133,11 @@ async function route(req: NextRequest) {
       db.attempt.findMany({
         where: { userId: user.id },
         orderBy: { createdAt: "desc" },
-        take: 500,
-        include: {
+        select: {
+          id: true,
+          exerciseId: true,
+          correct: true,
+          createdAt: true,
           exercise: { select: { lessonId: true, prompt: true, kind: true } },
         },
       }),

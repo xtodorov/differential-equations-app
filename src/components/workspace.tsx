@@ -132,7 +132,7 @@ export function Workspace({
     [light, setLight] = useState(false),
     [track, setTrack] = useState("math");
   useEffect(() => {
-    const preference = localStorage.getItem("mathforge-theme") === "light";
+    const preference = localStorage.getItem("mathforge-theme") !== "dark";
     setLight(preference);
     document.documentElement.dataset.theme = preference ? "light" : "dark";
     api("dashboard")
@@ -185,9 +185,10 @@ export function Workspace({
           <span className="square-icon">
             <GraduationCap size={22} />
           </span>
-          <h4>Разбирането идва с практика.</h4>
+          <h4>Как се завършва урок?</h4>
           <p>
-            Не е нужно да знаеш всичко. Нужно е да направиш следващата стъпка.
+            Прочети примера и реши трите упражнения. При затруднение използвай
+            подсказка.
           </p>
           <Link href="/learn">
             Открий своя урок <ArrowRight size={14} />
@@ -495,9 +496,9 @@ function Dashboard({
   return (
     <>
       <PageTitle
-        eyebrow="ВСЯКА СТЪПКА ИМА ЗНАЧЕНИЕ"
-        title={`Здравей, ${data.user.name.split(" ")[0]} 👋`}
-        subtitle="Готов ли си за още едно малко откритие? Нека продължим напред."
+        eyebrow="МОЯТА УЧЕБНА ТЕТРАДКА"
+        title={`Здравей, ${data.user.name.split(" ")[0]}`}
+        subtitle="Избери урок, проследи примера и провери какво си разбрал."
       >
         <span className="date-label">
           {new Intl.DateTimeFormat("bg-BG", {
@@ -514,14 +515,14 @@ function Dashboard({
           value={streak(data)}
           label="дни последователно"
           color="orange"
-          detail="Малко всеки ден"
+          detail="Дни с упражнение"
         />
         <Stat
           icon={BookOpen}
           value={`${data.progress.length} / ${data.lessons.length}`}
           label="завършени урока"
           color="violet"
-          detail="Твоето знание расте"
+          detail="С всички решени упражнения"
         />
         <Stat
           icon={CheckCheck}
@@ -541,7 +542,7 @@ function Dashboard({
       <div className="dashboard-grid">
         <div className="main-column">
           <div className="section-row">
-            <h2>Продължи своето пътешествие</h2>
+            <h2>Следващият ти урок</h2>
             <Link href="/learn">
               Всички уроци <ArrowRight size={15} />
             </Link>
@@ -551,8 +552,12 @@ function Dashboard({
             <div className="continue-card">
               <div className="continue-copy">
                 <span className="tag">
-                  <span className="status-dot" /> ПРЕПОРЪЧАНА СЛЕДВАЩА СТЪПКА
+                  <span className="status-dot" /> ПРЕПОРЪЧАН УРОК
                 </span>
+                <p className="recommendation-reason">
+                  Подбор според подготовката ти, завършените уроци и последните
+                  нерешени задачи.
+                </p>
                 <div className="lesson-meta">
                   {next.module}
                   <span>·</span>Урок{" "}
@@ -611,7 +616,7 @@ function Dashboard({
           )}
           <div className="section-row section-spacing">
             <h2>Твоите учебни пътеки</h2>
-            <span className="muted">Два пътя. Едно разбиране.</span>
+            <span className="muted">Математика и работа с код</span>
           </div>
           <div className="track-cards">
             {[
@@ -657,7 +662,7 @@ function Dashboard({
             ))}
           </div>
           <div className="section-row section-spacing">
-            <h2>Малките стъпки напред</h2>
+            <h2>Последни упражнения</h2>
             <Link href="/progress">
               Виж напредъка <ArrowRight size={15} />
             </Link>
@@ -690,7 +695,7 @@ function Dashboard({
                   <BookOpen />
                 </span>
                 <div>
-                  <b>Твоята история започва тук</b>
+                  <b>Още няма решени задачи</b>
                   <p>Реши първата си задача и виж напредъка си.</p>
                 </div>
                 <Link href={"/lessons/" + next?.id}>
@@ -1498,7 +1503,9 @@ function Progress({ data }: { data: DashboardData }) {
       </div>
       <div className="section-row section-spacing">
         <h2>История на опитите</h2>
-        <small className="muted">Последни до 500 опита</small>
+        <small className="muted">
+          Последни 30 опита · статистика за цялата история
+        </small>
       </div>
       <div className="panel activity-panel">
         {data.attempts.length ? (
