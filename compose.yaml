@@ -1,0 +1,32 @@
+services:
+  db:
+    container_name: mathforge-postgres
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: mathforge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-mathforge_local_only}
+      POSTGRES_DB: mathforge
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mathforge -d mathforge"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+  math:
+    image: mathforge-math
+    build: ./services/math
+    ports:
+      - "127.0.0.1:8001:8001"
+    read_only: true
+    tmpfs: /tmp
+    mem_limit: 768m
+    cpus: 2
+    pids_limit: 80
+    security_opt:
+      - no-new-privileges:true
+    cap_drop: [ALL]
+volumes:
+  postgres_data:

@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+  engineType = "client"
+}
+datasource db {
+  provider = "postgresql"
+}
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  name String
+  passwordHash String
+  createdAt DateTime @default(now())
+  profile Json?
+  sessions Session[]
+  attempts Attempt[]
+  progress Progress[]
+  studySessions StudySession[]
+}
+model Session {
+  id String @id
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  @@index([userId])
+  @@index([expiresAt])
+}
+model Lesson {
+  id String @id
+  track String
+  module String
+  position Int
+  title String
+  description String
+  minutes Int
+  prerequisiteId String?
+  content Json
+  exercises Exercise[]
+  progress Progress[]
+  @@index([track, position])
+}
+model Exercise {
+  id String @id
+  lessonId String
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  position Int
+  kind String
+  prompt String
+  answer String
+  explanation String
+  hints Json
+  starter String?
+  assumptions Json?
+  attempts Attempt[]
+  @@index([lessonId, position])
+}
+model Attempt {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  exerciseId String
+  exercise Exercise @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  answer String
+  correct Boolean
+  createdAt DateTime @default(now())
+  @@index([userId, createdAt])
+  @@index([userId, exerciseId])
+}
+model Progress {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lessonId String
+  lesson Lesson @relation(fields: [lessonId], references: [id], onDelete: Cascade)
+  completedAt DateTime @default(now())
+  @@unique([userId, lessonId])
+}
+model StudySession {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  startedAt DateTime @default(now())
+  endedAt DateTime?
+  @@index([userId, startedAt])
+}

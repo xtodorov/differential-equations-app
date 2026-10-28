@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+.venv/
+playwright-report/
+test-results/
+*.tsbuildinfo
+public/monaco/
+artifacts/
+.local/
+services/math/.wheelhouse/
